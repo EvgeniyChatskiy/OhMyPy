@@ -1,0 +1,13 @@
+import subprocess
+
+
+def execute_command_and_search_text(command, text):
+    result = subprocess.run(command, shell=True, capture_output=True, check=True)
+
+    if result.returncode == 0:
+        if text in result.stdout.decode():
+            return True
+    return False
+
+
+print(execute_command_and_search_text("echo 'Hello, World!'", "Hello, World"))
